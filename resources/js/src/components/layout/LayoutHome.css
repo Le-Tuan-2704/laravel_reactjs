@@ -1,0 +1,12 @@
+.div-title{
+    background-color: #818c9b;
+}
+
+.bg-blue{
+    background-color: rgb(106, 128, 252);
+}
+
+.div-content{
+    min-height: 300px;
+    margin: 20px 10px;
+}

@@ -26,6 +26,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "@ant-design/icons": "^4.6.2",
         "antd": "^4.15.1",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "react-router-dom": "^5.2.0"

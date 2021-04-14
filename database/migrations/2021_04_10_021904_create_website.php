@@ -18,6 +18,8 @@ class CreateWebsite extends Migration
             $table->string('name');
             $table->string('url');
             $table->string('image');
+            $table->integer('status');
+            $table->string('description');
             $table->timestamps();
         });
     }

@@ -5,6 +5,15 @@
 .bg-blue{
     background-color: rgb(106, 128, 252);
 }
+.text-white{
+    color: white;
+}
+
+.logout{
+    position: absolute;
+    width: 100%;
+    bottom: 55px;
+}
 
 .div-content{
     min-height: 300px;

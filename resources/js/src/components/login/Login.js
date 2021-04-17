@@ -1,9 +1,9 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Card, Checkbox, Col, Form, Input, Row } from 'antd';
+import { Button, Card, Checkbox, Form, Input, Space } from 'antd';
 import 'antd/dist/antd.css';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Login.css';
 
 Login.propTypes = {
@@ -55,9 +55,9 @@ function Login({ setToken }) {
 
 
     return (
-        <Row justify="center" align="middle" style={{ marginTop: 70 }}>
-            <Col >
-                <Card title="Login" orientation="center" bordered={false} style={{ width: 400 }}>
+        <div className="heroBlock fix-center">
+            <Space direction="vertical">
+                <Card title="Login" orientation="center" style={{ width: 500 }}>
                     <Form
                         name="normal_login"
                         className="login-form"
@@ -123,9 +123,8 @@ function Login({ setToken }) {
                     </Form>
 
                 </Card>
-            </Col>
-        </Row>
-
+            </Space>
+        </div>
     );
 }
 

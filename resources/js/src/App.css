@@ -1,0 +1,14 @@
+.heroBlock {
+    background-position: 50% 100%;
+    background-size: cover;
+    height: 100vh;
+}
+
+.fix-center{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}

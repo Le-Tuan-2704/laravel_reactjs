@@ -9,11 +9,10 @@ import {
 import { Affix, Button, Layout, Menu } from 'antd';
 import 'antd/dist/antd.css';
 import React, { useState } from 'react';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useToken from '../../hookCustom/useToken';
-import Routers from '../../routers/Routers';
 import Login from '../login/Login';
-import Content1 from './content1/Content1';
+import AddWebsite from '../website/AddWebsite';
 const { SubMenu } = Menu;
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -26,6 +25,7 @@ function LayoutHome(props) {
     }
 
     const [collapsed, setCollapsed] = useState(false);
+
     const onCollapse = coll => {
         console.log(coll);
         setCollapsed(coll);
@@ -78,8 +78,8 @@ function LayoutHome(props) {
                             <h1 className="text-white">ABC</h1>
                         </div>
                     </Header> */}
-                    {/* router */}
-                    {/* <Routers /> */}
+
+                    <AddWebsite />
 
                     <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>

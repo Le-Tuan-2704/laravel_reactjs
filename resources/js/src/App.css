@@ -12,3 +12,20 @@
     flex-wrap: nowrap;
     align-items: center;
 }
+
+.heroBlock .fix-box{
+    width: 90%;
+    height: 90%;
+    
+}
+
+.block-right{
+    display: inline-block;
+    float: right;
+}
+
+.div-test{
+    min-height: 300px;
+    background-color: rgb(149, 139, 209);
+    margin: 50px;
+}

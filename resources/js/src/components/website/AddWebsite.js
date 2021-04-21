@@ -1,5 +1,7 @@
 import { Button, Card, Form, Input, Space } from 'antd';
+import axios from 'axios';
 import React from 'react';
+import { useHistory } from 'react-router';
 import UpImg from './UpImg';
 
 
@@ -8,7 +10,7 @@ const layout = {
         span: 6,
     },
     wrapperCol: {
-        span: 18,
+        span: 16,
     },
 };
 const tailLayout = {
@@ -19,9 +21,7 @@ const tailLayout = {
 };
 
 
-const onFinish = (values) => {
-    console.log('Success:', values);
-};
+
 
 const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -29,11 +29,31 @@ const onFinishFailed = (errorInfo) => {
 
 
 function AddWebsite(props) {
+    let history = useHistory();
+    const onFinish = (values) => {
+
+        var data = {
+            'name': values.nameWebsite,
+            'url': values.urlWebsite,
+            'description': values.describeWebsite
+        }
+        console.log('Success:', data);
+        axios({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/api/websites',
+            data: data
+        }).then(res => {
+            console.log(res);
+            history.push("/website");
+        }).catch(err => {
+            console.log(err);
+        });
+    };
 
     return (
         <div className="heroBlock fix-center">
-            <Space direction="vertical">
-                <Card title="Thêm website" style={{ width: 500 }}>
+            <Space direction="vertical" className="fix-box">
+                <Card title="Thêm website">
                     <Form
                         {...layout}
                         name="basic"
@@ -43,9 +63,10 @@ function AddWebsite(props) {
                         onFinish={onFinish}
                         onFinishFailed={onFinishFailed}
                     >
+                        <br />
                         <Form.Item
                             label="Tên website"
-                            name="username"
+                            name="nameWebsite"
                             rules={[
                                 {
                                     required: true,
@@ -53,12 +74,12 @@ function AddWebsite(props) {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input allowClear />
                         </Form.Item>
-
+                        <br />
                         <Form.Item
                             label="URL website"
-                            name="username"
+                            name="urlWebsite"
                             rules={[
                                 {
                                     required: true,
@@ -66,12 +87,12 @@ function AddWebsite(props) {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input allowClear />
                         </Form.Item>
-
+                        <br />
                         <Form.Item
                             label="Mô tả"
-                            name="username"
+                            name="describeWebsite"
                             rules={[
                                 {
                                     required: true,
@@ -79,25 +100,22 @@ function AddWebsite(props) {
                                 },
                             ]}
                         >
-                            <Input />
+                            <Input.TextArea allowClear />
                         </Form.Item>
-
+                        <br />
                         <Form.Item
                             label="Hình ảnh"
-                            name="username"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your Hình ảnh!',
-                                },
-                            ]}
+                            name="ImgWebsite"
+
                         >
                             <UpImg />
                         </Form.Item>
-
+                        <br />
                         <Form.Item {...tailLayout}>
                             <Button type="primary" htmlType="submit"> Thêm </Button>
                         </Form.Item>
+                        <br />
+                        <br />
                     </Form>
                 </Card>
 

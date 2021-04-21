@@ -15,8 +15,16 @@ class WebsitesController extends Controller
      */
     public function index()
     {
+        $datas = Websites::get();
+        $showData = array();
+        foreach ($datas as $data) {
+            if ($data->status == 1) {
+                array_push($showData, $data);
+            }
+        }
+
         return response()->json([
-            "data" => Websites::get(),
+            "data" => $showData,
             "message" => "thanh cong"
         ], 200);
     }

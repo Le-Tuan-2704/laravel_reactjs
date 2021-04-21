@@ -9,10 +9,14 @@ import {
 import { Affix, Button, Layout, Menu } from 'antd';
 import 'antd/dist/antd.css';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Link, NavLink, Route, Switch } from 'react-router-dom';
 import useToken from '../../hookCustom/useToken';
+import NotFound from '../../notFound/NotFound';
+import Home from '../home/Home';
 import Login from '../login/Login';
 import AddWebsite from '../website/AddWebsite';
+import RepairWebsite from '../website/RepairWebsite';
+import ShowWebsite from '../website/ShowWebsite';
 const { SubMenu } = Menu;
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -44,13 +48,14 @@ function LayoutHome(props) {
 
                     }}>
                     <div className="logo" />
-                    <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{ marginBottom: 20 }}>
-                        <Menu.Item key="1" icon={<LaptopOutlined />}>
-                            <Link to='/'>Website</Link>
+                    <Menu theme="dark" defaultSelectedKeys={['trangchu']} mode="inline" style={{ marginBottom: 20 }}>
+                        <Menu.Item key="trangchu" icon={<DesktopOutlined />}>
+                            <NavLink to='/'>Trang Chủ</NavLink>
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<DesktopOutlined />}>
-                            Option 2
+                        <Menu.Item key="website" icon={<LaptopOutlined />}>
+                            <NavLink to='/website'>Website</NavLink>
                         </Menu.Item>
+
                         <SubMenu key="sub1" icon={<UserOutlined />} title="User">
                             <Menu.Item key="3">Tom</Menu.Item>
                             <Menu.Item key="4">Bill</Menu.Item>
@@ -63,7 +68,7 @@ function LayoutHome(props) {
 
                         </SubMenu>
                         <Menu.Item key="9" icon={<FileOutlined />}>
-                            Files
+                            <Link to='/files'>Files</Link>
                         </Menu.Item>
                     </Menu>
 
@@ -73,14 +78,23 @@ function LayoutHome(props) {
                 </Sider>
 
                 <Layout className="site-layout">
-                    {/* <Header className="site-layout-background" style={{ padding: 0 }} >
-                        <div className="container ">
-                            <h1 className="text-white">ABC</h1>
-                        </div>
-                    </Header> */}
-
-                    <AddWebsite />
-
+                    <Switch>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route exact path="/website">
+                            <ShowWebsite />
+                        </Route>
+                        <Route path="/website/add">
+                            <AddWebsite />
+                        </Route>
+                        <Route path="/website/edit">
+                            <RepairWebsite />
+                        </Route>
+                        <Route path="">
+                            <NotFound />
+                        </Route>
+                    </Switch>
                     <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
                 </Layout>
             </Layout>

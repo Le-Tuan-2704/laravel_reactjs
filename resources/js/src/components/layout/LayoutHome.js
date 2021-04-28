@@ -9,7 +9,7 @@ import {
 import { Affix, Button, Layout, Menu } from 'antd';
 import 'antd/dist/antd.css';
 import React, { useState } from 'react';
-import { BrowserRouter, Link, NavLink, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, NavLink, Route, Switch, useLocation } from 'react-router-dom';
 import useToken from '../../hookCustom/useToken';
 import NotFound from '../../notFound/NotFound';
 import Home from '../home/Home';
@@ -39,6 +39,12 @@ function LayoutHome(props) {
         return <Login setToken={setToken} />
     }
 
+    // render menu item
+    let location = useLocation();
+    var url = location.pathname;
+    if (url.includes('/website')) url = 'website';
+
+
     return (
         <div>
             <Layout style={{ minHeight: '100vh' }}>
@@ -48,7 +54,7 @@ function LayoutHome(props) {
 
                     }}>
                     <div className="logo" />
-                    <Menu theme="dark" defaultSelectedKeys={['trangchu']} mode="inline" style={{ marginBottom: 20 }}>
+                    <Menu theme="dark" defaultSelectedKeys={[url]} mode="inline" style={{ marginBottom: 20 }}>
                         <Menu.Item key="trangchu" icon={<DesktopOutlined />}>
                             <NavLink to='/'>Trang Chủ</NavLink>
                         </Menu.Item>

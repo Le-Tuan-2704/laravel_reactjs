@@ -18,22 +18,22 @@ function ShowWebsite(props) {
             key: 'key',
             width: '60px',
         },
-        { title: 'Name', dataIndex: 'name', key: 'name' },
-        { title: 'URL', dataIndex: 'url', key: 'url' },
-        { title: 'Des', dataIndex: 'description', key: 'des' },
+        { title: 'Tên Website', dataIndex: 'name', key: 'name' },
+        { title: 'Đường dẫn', dataIndex: 'url', key: 'url' },
+        { title: 'Mô tả', dataIndex: 'description', key: 'des' },
         {
-            title: 'Action',
+            title: 'Hành động',
             dataIndex: 'operation',
-            key: 'action',
+            key: 'Hành động',
             width: '150px',
             render: (_, record) => (
                 <Space size="middle">
                     <ButtonGroup>
                         <Button type="primary">
-                            <Link to={`/website/edit?id=${record.id}`} >Edit</Link>
+                            <Link to={`/website/edit?id=${record.id}`} >Sửa</Link>
                         </Button>
                         <Button type="danger" onClick={() => showModal(record.id)}>
-                            <p>Delete</p>
+                            <p>Xóa</p>
                         </Button>
                     </ButtonGroup>
                 </Space>
@@ -56,6 +56,7 @@ function ShowWebsite(props) {
             console.log(err);
         });
     }
+
     useEffect(() => {
         getWebsite();
     }, []);
@@ -122,9 +123,9 @@ function ShowWebsite(props) {
                         <Col span={18}>
                             <Col span={18} offset={6}>
                                 <Search
-                                    placeholder="input search text"
+                                    placeholder="nhập từ khóa tìm kiếm"
                                     allowClear
-                                    enterButton="Search"
+                                    enterButton="Tìm Kiếm"
                                     size="middle"
                                     onSearch={onSearch}
                                 />

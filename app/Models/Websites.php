@@ -13,6 +13,8 @@ class Websites extends Model
         'name',
         'url',
         'image',
+        'avata',
+        'isactive',
         'status',
         'description'
     ];

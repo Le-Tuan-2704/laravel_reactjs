@@ -18,7 +18,9 @@ class CreateWebsitesTable extends Migration
             $table->string('name');
             $table->string('url');
             $table->string('image');
+            $table->string('avata');
             $table->integer('status');
+            $table->integer('isactive');
             $table->longText('description');
             $table->timestamps();
         });

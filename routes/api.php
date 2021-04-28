@@ -23,3 +23,6 @@ Route::post('register', 'Api\UserController@register');
 Route::get('test', 'Api\UserController@test');
 
 Route::apiResource('websites', 'Api\WebsitesController');
+
+Route::get('trangchu', 'Api\TrangChuController@index');
+Route::get('trangchu/checkWebsites', 'Api\TrangChuController@checkWebsites');

@@ -25,7 +25,9 @@
 }
 
 .div-test{
+    width: 85%;
     min-height: 300px;
-    background-color: rgb(149, 139, 209);
-    margin: 50px;
+    /* overflow-x: scroll; */
+    margin: 10px auto;
+    
 }

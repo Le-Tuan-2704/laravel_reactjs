@@ -19,6 +19,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
+<script>
+var url = "{{url('')}}";
+</script>
+
 <body>
     <div id="root"></div>
     <script src="{{asset('js/app.js')}}"></script>

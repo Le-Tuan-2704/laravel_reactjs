@@ -49,6 +49,7 @@ function Home(props) {
                         >
                             <Divider />
                             <Meta title={item.name} description={<p>www.{item.url}</p>} />
+                            <p>đã cập nhập: {item.updated_at}</p>
                         </Card>
                     </List.Item>
                 )}

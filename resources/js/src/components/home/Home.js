@@ -1,5 +1,6 @@
 import { Card, Divider, List } from 'antd';
 import { Meta } from 'antd/lib/list/Item';
+
 import { useEffect, useState } from 'react';
 
 function Home(props) {
@@ -23,6 +24,7 @@ function Home(props) {
     useEffect(() => {
         getWebsite();
     }, []);
+
 
     return (
         <div className="div-test">
@@ -49,7 +51,7 @@ function Home(props) {
                         >
                             <Divider />
                             <Meta title={item.name} description={<p>www.{item.url}</p>} />
-                            <p>đã cập nhập: {item.updated_at}</p>
+                            <p>đã cập nhập: {item.date}</p>
                         </Card>
                     </List.Item>
                 )}
@@ -71,10 +73,14 @@ function Home(props) {
 
                         <Card
                             hoverable
-                            style={{ width: 240 }}
-                            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                            style={{ width: 360, }}
+                            cover={
+                                <img alt="example" height={270} src={location.origin + "/" + item.image} />
+                            }
                         >
-                            <Meta title={item.name} description={`www.${item.url}`} />
+                            <Divider />
+                            <Meta title={item.name} description={<p>www.{item.url}</p>} />
+                            <p>đã cập nhập: {item.date}</p>
                         </Card>
                     </List.Item>
                 )}

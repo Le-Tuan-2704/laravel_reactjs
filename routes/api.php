@@ -20,7 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'Api\UserController@login');
 Route::post('register', 'Api\UserController@register');
-Route::get('test', 'Api\UserController@test');
+
+Route::get('test', function () {
+    return 1;
+});
 
 Route::apiResource('websites', 'Api\WebsitesController');
 

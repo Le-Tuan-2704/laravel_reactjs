@@ -14,6 +14,8 @@ class TrangChuController extends Controller
         $showDatas = array();
         foreach ($datas as $data) {
             if ($data->status == 1) {
+                $date = date_create($data->updated_at);
+                $data->date = date_format($date, "Y/m/d H:i:s");
                 array_push($showDatas, $data);
             }
         }
@@ -21,7 +23,6 @@ class TrangChuController extends Controller
         $dataCheckUrlOK = array();
         $dataCheckUrlError = array();
         foreach ($showDatas as $showData) {
-
             if ($showData->isactive) {
                 array_push($dataCheckUrlOK, $showData);
             } else {

@@ -2,6 +2,7 @@ import { Card, Divider, List } from 'antd';
 import { Meta } from 'antd/lib/list/Item';
 
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Home(props) {
     const [dataWebsiteOK, setDataWebsiteOK] = useState([]);
@@ -41,18 +42,19 @@ function Home(props) {
 
                 renderItem={item => (
                     <List.Item>
-
-                        <Card
-                            hoverable
-                            style={{ width: 360, }}
-                            cover={
-                                <img alt="example" height={270} src={location.origin + "/" + item.image} />
-                            }
-                        >
-                            <Divider />
-                            <Meta title={item.name} description={<p>www.{item.url}</p>} />
-                            <p>đã cập nhập: {item.date}</p>
-                        </Card>
+                        <a href={item.url} target="_blank">
+                            <Card
+                                hoverable
+                                style={{ width: 360, }}
+                                cover={
+                                    <img alt="example" height={270} src={location.origin + "/" + item.image} />
+                                }
+                            >
+                                <Divider />
+                                <Meta title={item.name} description={<p>{item.url}</p>} />
+                                <p>đã cập nhập: {item.date}</p>
+                            </Card>
+                        </a>
                     </List.Item>
                 )}
             />
@@ -62,27 +64,29 @@ function Home(props) {
                 header={
                     <h1>Website ngừng hoạt động</h1>
                 }
-                grid={{ gutter: 16, column: 4 }}
+                grid={{ gutter: 16, column: 3 }}
                 dataSource={dataWebsiteError}
                 loading={!checkConnect}
                 itemLayout="horizontal"
-                pagination={{ pageSize: 4 }}
+                pagination={{ pageSize: 3 }}
 
                 renderItem={item => (
                     <List.Item>
-
-                        <Card
-                            hoverable
-                            style={{ width: 360, }}
-                            cover={
-                                <img alt="example" height={270} src={location.origin + "/" + item.image} />
-                            }
-                        >
-                            <Divider />
-                            <Meta title={item.name} description={<p>www.{item.url}</p>} />
-                            <p>đã cập nhập: {item.date}</p>
-                        </Card>
+                        <a href={item.url} target="_blank">
+                            <Card
+                                hoverable
+                                style={{ width: 360, }}
+                                cover={
+                                    <img alt="example" height={270} src={location.origin + "/" + item.image} />
+                                }
+                            >
+                                <Divider />
+                                <Meta title={item.name} description={<p>{item.url}</p>} />
+                                <p>đã cập nhập: {item.date}</p>
+                            </Card>
+                        </a>
                     </List.Item>
+
                 )}
             />
 

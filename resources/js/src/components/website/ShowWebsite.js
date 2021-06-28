@@ -10,6 +10,9 @@ import { Link } from 'react-router-dom';
 function ShowWebsite(props) {
 
     var heightScreen = screen.availHeight;
+    // loading list website
+    const [loadingWebsite, setLoadingWebsite] = useState(true);
+
     // console.log(heightScreen);
     const columns = [
         {
@@ -52,6 +55,7 @@ function ShowWebsite(props) {
                 data.key = index + 1;
             })
             setDataWebsite(res.data.data);
+            setLoadingWebsite(false);
         }).catch(err => {
             console.log(err);
         });
@@ -142,6 +146,7 @@ function ShowWebsite(props) {
 
                     <Table
                         className="table table-striped"
+                        loading={loadingWebsite}
                         bordered={true}
                         columns={columns}
                         dataSource={dataWebsite}

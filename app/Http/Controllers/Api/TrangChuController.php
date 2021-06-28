@@ -39,6 +39,12 @@ class TrangChuController extends Controller
 
     public function checkWebsites()
     {
+        $url = "http://www.dodacphumy.com";
+        // http: //www.dodacphumy.com/
+        $file_headers = @get_headers($url);
+
+        dd($file_headers);
+
         $datas = Websites::get();
         $showDatas = array();
         foreach ($datas as $data) {
@@ -48,38 +54,45 @@ class TrangChuController extends Controller
         }
 
         foreach ($showDatas as $showData) {
-            $url = "https://" . $showData->url;
+            // $url = "https://" . $showData->url;
 
-            $curl = curl_init($url);
-            curl_setopt($curl, CURLOPT_NOBODY, true);
-            $result = curl_exec($curl);
-            if ($result) {
-                $isActive = 1;
-            } else {
+            // $curl = curl_init($url);
+            // curl_setopt($curl, CURLOPT_NOBODY, true);
+            // $result = curl_exec($curl);
+            // return ($result);
+            // if ($result) {
+            //     $isActive = 1;
+            // } else {
+            //     $isActive = 0;
+            // }
+
+            $url = $showData->url;
+            $file_headers = @get_headers($url);
+
+            if (!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
                 $isActive = 0;
+            } else {
+                $isActive = 1;
             }
+
             $update = array("isactive" => $isActive);
+            $data = Websites::find($showData->id);
             try {
                 // create the API client instance
-                $client = new \Pdfcrowd\HtmlToImageClient("LeTuan", "792b3d5fbeec84294d86ff0ad4ea7dc6");
+                $client = new \Pdfcrowd\HtmlToImageClient("demo", "ce544b6ea52a5621fb9d55f8b542d14d");
 
                 // configure the conversion
                 $client->setOutputFormat("png");
                 $client->setScreenshotHeight(768);
                 $img = 'img/' . $showData->id . '.png';
-                $client->convertUrlToFile($url, $img);
-                // run the conversion and store the result into the "image" variable
-                //update
+                $client->convertUrlToFile($url, asset($img));
+                error_log($img);
                 $update["image"] = $img;
             } catch (\Pdfcrowd\Error $why) {
-
-                $data = Websites::find($showData->id);
-                $data->update($update);
+                error_log("Pdfcrowd Error: {$why}\n");
+                error_log("anh loi: " . $img);
                 // send the error in the HTTP response
-                return response($why->getMessage(), $why->getCode())
-                    ->header("Content-Type", "text/plain");
             }
-            $data = Websites::find($showData->id);
             $data->update($update);
         }
 

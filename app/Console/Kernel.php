@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\InactiveWebsites::class,
+        // Commands\CheckWebsize::class,
+        'App\Console\Commands\CheckWebsize',
     ];
 
     /**
@@ -24,8 +25,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('website:InactiveWebsites')
-            // ->everyMinute();
+        // $schedule->command('checkwebsize:cron')
+        //     ->withoutOverlapping()
+        //     ->everyFiveMinutes();
+
+        $schedule->command('checkwebsize:cron')
+            ->withoutOverlapping()
             ->hourly();
     }
 
